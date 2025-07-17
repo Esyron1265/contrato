@@ -18,7 +18,7 @@
       font-size: 16px;
       margin-top: 20px;
     }
-    select, input[type="text"], input[type="file"] {
+    select, input[type="text"] {
       width: 100%;
       padding: 8px;
       margin-top: 10px;
@@ -37,9 +37,6 @@
 
 <h2>Contrato WIN - Versión Web</h2>
 
-<label for="excel">Cargar archivo Excel con planes:</label>
-<input type="file" id="excel" accept=".xlsx" />
-
 <label for="plan">Seleccionar plan:</label>
 <select id="plan" disabled onchange="generarContrato()">
   <option value="">-- Elige un plan --</option>
@@ -56,6 +53,7 @@
 
 <div id="contrato"></div>
 
+<!-- Cargar Excel automáticamente -->
 <script>
 let planesData = [];
 
