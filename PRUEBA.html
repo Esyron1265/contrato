@@ -140,8 +140,8 @@ function generarContrato() {
     contrato += ".\n";
   }
 
-  if (plan["03 primeros meses"] && plan["03 primeros meses"].toString().toLowerCase() !== "no aplica") {
-    contrato += `Pagarás a un precio promocional de S/ ${plan["03 primeros meses"]}, incluye I.G.V. por los primeros 03 meses.\n`;
+  if (plan["Precio Promocion"] && plan["Precio Promocion"].toString().toLowerCase() !== "no aplica") {
+    contrato += `Pagarás a un precio promocional de S/ ${plan["Precio Promocion"]}, incluye I.G.V. por los primeros 03 meses.\n`;
   }
 
   contrato += `\nVencido el plazo, se aplicarán las condiciones regulares de tu plan contratado. La tarifa de reconexión es de S/ 7.42, incluye IGV.\n\n`;
