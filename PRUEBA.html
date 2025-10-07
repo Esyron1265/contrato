@@ -141,10 +141,10 @@ function generarContrato() {
   }
 
   if (plan["Precio Promocion"] && plan["Precio Promocion"].toString().toLowerCase() !== "no aplica") {
-    contrato += `Pagarás a un precio promocional de S/ ${plan["Precio Promocion"]}, incluye I.G.V. por los primeros 03 meses.\n`;
+    contrato += `Pagarás a un precio promocional de S/ ${plan["Precio Promocion"]}, incluye I.G.V. por el primer mes .\n`;
   }
 
-  contrato += `\nVencido el plazo, se aplicarán las condiciones regulares de tu plan contratado. La tarifa de reconexión es de S/ 7.42, incluye IGV.\n\n`;
+  contrato += `\nVencido el plazo, se aplicarán las condiciones regulares de tu plan contratado. La tarifa de reconexión es de S/ 6.01, incluye IGV.\n\n`;
 
   if (fonoActivo) {
     contrato += `El servicio de telefonía fija VoIP postpago se brinda a través de la red de internet de WIN. Tu servicio incluye un equipo de telefonía analógico en comodato, llamadas ilimitadas dentro de la red de WIN y un paquete mensual de 100 minutos para llamar a todo operador a nivel nacional, no acumulable. El precio mensual del servicio es de S/ 10.00 incluido I.G.V.\n`;
@@ -284,4 +284,5 @@ contrato += `BIENVENIDO A LA FAMILIA WIN. \n`;
 
 </body>
 </html>
+
 
