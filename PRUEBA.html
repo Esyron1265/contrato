@@ -131,7 +131,7 @@ function generarContrato() {
         case "INTERNET+PROMOCION+WINTV":
             introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de ${plan["Precio Promocion"]} durante (1) mes, con el servicio de WINTV. Luego de este periodo, pagarás ${plan["Tarifa (Incluye IGV)"]} y navegarás a la velocidad contratada. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a WINTV. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
             break;
-        case "INTERNET+PROMOCION+WINTV+EQUIPOS":
+        case "INTERNET +PROMOCION+WINTV+EQUIPOS":
             introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de ${plan["Precio Promocion"]} durante (1) mes, con el servicio de WINTV, y el/los equipo(s) (Mesh/WINBOX). Luego de este periodo, pagarás ${plan["Tarifa (Incluye IGV)"]} y navegarás a la velocidad contratada. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a WINTV. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
             break;			
         case "INTERNET+PROMOCION+DGO":
@@ -322,6 +322,7 @@ contrato += `BIENVENIDO A LA FAMILIA WIN. \n`;
 
 </body>
 </html>
+
 
 
 
