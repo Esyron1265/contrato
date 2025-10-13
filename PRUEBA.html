@@ -120,29 +120,50 @@ function generarContrato() {
 
   let introTexto = "";
 
-  // --- GENERADOR DE PÁRRAFOS SEGÚN LA COLUMNA O ---
-    switch (tipoContrato) {
-        case "INTERNET+PROMOCION":
-            introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de ${plan["Precio Promocion"]} durante (1) mes. Luego de este periodo, pagarás ${plan["Tarifa (Incluye IGV)"]} y navegarás a la velocidad contratada. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
-            break;
-        case "INTERNET+WINTV":
-            introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]} con el servicio de (WINTV), por un precio de ${plan["Tarifa (Incluye IGV)"]}. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
-            break;			
-        case "INTERNET+PROMOCION+WINTV":
-            introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de ${plan["Precio Promocion"]} durante (1) mes, con el servicio de WINTV. Luego de este periodo, pagarás ${plan["Tarifa (Incluye IGV)"]} y navegarás a la velocidad contratada. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a WINTV. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
-            break;
-        case "INTERNET+PROMOCION+WINTV+EQUIPOS":
-            introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de ${plan["Precio Promocion"]} durante (1) mes, con el servicio de WINTV, y el/los equipo(s) (Mesh/WINBOX). Luego de este periodo, pagarás ${plan["Tarifa (Incluye IGV)"]} y navegarás a la velocidad contratada. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a WINTV. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
-            break;			
-        case "INTERNETPROMOCION+DGO+EQUIPOS":
-            introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de ${plan["Precio Promocion"]} durante (1) mes, con el servicio de DGO, y el/los equipo(s) (Mesh/WINBOX) . Luego de este periodo, pagarás ${plan["Tarifa (Incluye IGV)"]} y navegarás a la velocidad contratada. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a DGO. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
-            break;			
-        case "INTERNET":
-            introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]} por un precio de ${plan["Tarifa (Incluye IGV)"]}. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
-            break;
-        default:
-            introTexto = "";
-    }
+// --- GENERADOR DE PÁRRAFOS SEGÚN LA COLUMNA O ---
+function valorNumerico(v) {
+  if (!v || v.toString().toLowerCase().includes("no aplica")) return 0;
+  const num = parseFloat(v.toString().replace(/[^\d.]/g, ""));
+  return isNaN(num) ? 0 : num;
+}
+
+const precioPromoBase = valorNumerico(plan["Precio Promocion"]);
+const wintv = valorNumerico(plan["WINTV L1 MAX PREMIUM / L1 MAX"]);
+const dgo = valorNumerico(plan["DGO"]);
+const tarifaBase = valorNumerico(plan["Tarifa (Incluye IGV)"]);
+
+const precioPromoTotal = precioPromoBase + wintv + dgo;
+const tarifaFinalTotal = tarifaBase + wintv + dgo;
+
+switch (tipoContrato) {
+  case "INTERNET+PROMOCION":
+    introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de S/ ${precioPromoTotal.toFixed(2)} durante (1) mes. Luego de este periodo, pagarás S/ ${tarifaFinalTotal.toFixed(2)} y navegarás a la velocidad contratada. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
+    break;
+
+  case "INTERNET+WINTV":
+    introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]} con el servicio de (WINTV), por un precio de S/ ${tarifaFinalTotal.toFixed(2)}. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
+    break;
+
+  case "INTERNET+PROMOCION+WINTV":
+    introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de S/ ${precioPromoTotal.toFixed(2)} durante (1) mes, con el servicio de WINTV. Luego de este periodo, pagarás S/ ${tarifaFinalTotal.toFixed(2)} y navegarás a la velocidad contratada. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a WINTV. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
+    break;
+
+  case "INTERNET+PROMOCION+WINTV+EQUIPOS":
+    introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de S/ ${precioPromoTotal.toFixed(2)} durante (1) mes, con el servicio de WINTV y el/los equipo(s) (Mesh/WINBOX). Luego de este periodo, pagarás S/ ${tarifaFinalTotal.toFixed(2)} y navegarás a la velocidad contratada. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a WINTV. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
+    break;
+
+  case "INTERNETPROMOCION+DGO+EQUIPOS":
+    introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de S/ ${precioPromoTotal.toFixed(2)} durante (1) mes, con el servicio de DGO y el/los equipo(s) (Mesh/WINBOX). Luego de este periodo, pagarás S/ ${tarifaFinalTotal.toFixed(2)} y navegarás a la velocidad contratada. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a DGO. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
+    break;
+
+  case "INTERNET":
+    introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]} por un precio de S/ ${tarifaFinalTotal.toFixed(2)}. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
+    break;
+
+  default:
+    introTexto = "";
+}
+
   // --- TEXTO BASE DEL CONTRATO (tu código original desde aquí) ---
   let contrato = introTexto; // 👈 añadimos el párrafo antes de todo lo demás
 	
@@ -316,6 +337,9 @@ contrato += `BIENVENIDO A LA FAMILIA WIN. \n`;
 
 </body>
 </html>
+
+
+
 
 
 
