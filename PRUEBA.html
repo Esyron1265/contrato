@@ -131,9 +131,10 @@ const precioPromoBase = valorNumerico(plan["Precio Promocion"]);
 const wintv = valorNumerico(plan["WINTV L1 MAX PREMIUM / L1 MAX"]);
 const dgo = valorNumerico(plan["DGO"]);
 const tarifaBase = valorNumerico(plan["Tarifa (Incluye IGV)"]);
-
+const apppromo = valorNumerico(plan["PROMO APP"]);
 const precioPromoTotal = precioPromoBase + wintv + dgo;
 const tarifaFinalTotal = tarifaBase + wintv + dgo;
+const precioPromoTotal2 = precioPromoBase + apppromo;
 
 switch (tipoContrato) {
   case "INTERNET+PROMOCION":
@@ -145,15 +146,19 @@ switch (tipoContrato) {
     break;
 
   case "INTERNET+PROMOCION+WINTV":
-    introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de S/ ${precioPromoTotal.toFixed(2)} durante (1) mes, con el servicio de WINTV. Luego de este periodo, pagarás S/ ${tarifaFinalTotal.toFixed(2)} y navegarás a la velocidad contratada. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a WINTV. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
+    introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de S/ ${precioPromoTotal2.toFixed(2)} durante (1) mes, con el servicio de WINTV. Luego de este periodo, pagarás S/ ${tarifaFinalTotal.toFixed(2)}. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a WINTV. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
     break;
 
   case "INTERNET+PROMOCION+WINTV+EQUIPOS":
-    introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de S/ ${precioPromoTotal.toFixed(2)} durante (1) mes, con el servicio de WINTV y el/los equipo(s) (Mesh/WINBOX). Luego de este periodo, pagarás S/ ${tarifaFinalTotal.toFixed(2)} y navegarás a la velocidad contratada. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a WINTV. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
+    introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de S/ ${precioPromoTotal2.toFixed(2)} durante (1) mes, con el servicio de WINTV y el/los equipo(s) (Mesh/WINBOX). Luego de este periodo, pagarás S/ ${tarifaFinalTotal.toFixed(2)}. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a WINTV. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
     break;
 
   case "INTERNETPROMOCION+DGO+EQUIPOS":
-    introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de S/ ${precioPromoTotal.toFixed(2)} durante (1) mes, con el servicio de DGO y el/los equipo(s) (Mesh/WINBOX). Luego de este periodo, pagarás S/ ${tarifaFinalTotal.toFixed(2)} y navegarás a la velocidad contratada. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a DGO. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
+    introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de S/ ${precioPromoTotal2.toFixed(2)} durante (1) mes, con el servicio de DGO y el/los equipo(s) (Mesh/WINBOX). Luego de este periodo, pagarás S/ ${tarifaFinalTotal.toFixed(2)}. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a DGO. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
+    break;
+	
+  case "INTERNETPROMOCION+DGO":
+    introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, con una mejora de velocidad de ${velocidadDupMax} por un precio promocional de S/ ${precioPromoTotal2.toFixed(2)} durante (1) mes, con el servicio de DGO. Luego de este periodo, pagarás S/ ${tarifaFinalTotal.toFixed(2)}. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a DGO. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
     break;
 
   case "INTERNET":
@@ -243,7 +248,7 @@ switch (tipoContrato) {
   }
 
 if (
-  (plan["WINTV L1 MAX PREMIUM / L1 MAX"] && plan["WINTV L1 MAX PREMIUM / L1 MAX"].toString().trim().toLowerCase() !== "no aplica") ||
+  (plan["WINTVPLUS"] && plan["WINTVPLUS"].toString().trim().toLowerCase() !== "no aplica") ||
   (plan["DGO"] && plan["DGO"].toString().trim().toLowerCase() !== "no aplica")
 ) {
   contrato += `Hoy ${dia} de ${mes} del ${anio}, en la ciudad de Lima, usted contrata con WIN, para ello me brinda los siguientes datos:\n`;
@@ -252,17 +257,45 @@ if (
   contrato += `De manera adicional e independiente al servicio de internet fijo, mientras mantengas vigente el servicio, accedes a:\n\n`;
 
   if (plan["TIPO DE SERVICIO"] && plan["TIPO DE SERVICIO"].toString().trim().toLowerCase() !== "no aplica") {
-    contrato += `Una suscripción para el servicio de streaming ${plan["TIPO DE SERVICIO"]}.\n`;
+    contrato += `Una suscripción para el aplicativo ${plan["TIPO DE SERVICIO"]}.\n`;
   }
 
-  if (plan["WINTV L1 MAX PREMIUM / L1 MAX"] && plan["WINTV L1 MAX PREMIUM / L1 MAX"].toString().trim().toLowerCase() !== "no aplica") {
-    contrato += `El precio mensual de la suscripción es de S/ ${plan["WINTV L1 MAX PREMIUM / L1 MAX"]} incluido IGV.\n`;
+  if (plan["WINTVPLUS"] && plan["WINTVPLUS"].toString().trim().toLowerCase() !== "no aplica") {
+    contrato += `El precio mensual de la suscripción es de S/ ${plan["WINTVPLUS"]} incluido IGV.\n`;
   }
 
   if (plan["DGO"] && plan["DGO"].toString().trim().toLowerCase() !== "no aplica") {
     contrato += `El precio mensual de la suscripción es de S/ ${plan["DGO"]} incluido IGV.\n`;
   }
 
+  if (plan["PROMO APP"] && plan["PROMO APP"].toString().trim().toLowerCase() !== "no aplica") {
+    contrato += `Por promoción, tendrá un precio de S/ ${plan["PROMO APP"]} incluido IGV, por los un (01) mes; a partir del segunda mes, pagarás el precio regular.\n`;
+  }
+  
+  contrato += `Para mayor información de términos y condiciones ingresa a win.pe/\n`;
+  contrato += `¿Aceptas los términos del presente acuerdo? (CLIENTE RESPONDE)\n\n`;
+}
+
+if (
+  (plan["WINTVL1"] && plan["WINTVL1"].toString().trim().toLowerCase() !== "no aplica") ||
+) {
+  contrato += `Hoy ${dia} de ${mes} del ${anio}, en la ciudad de Lima, usted contrata con WIN, una suscripción al servicio “${plan["TIPO DE SERVICIO"]}”, servicio disponible por ser cliente de WIN, para lo cual  solicitamos brinde los siguientes datos:\n`;
+  contrato += `Su nombre completo es\n`;
+  contrato += `Su número de Documento de Identidad / CE / RUC (10…)\n\n`;
+  contrato += `De esta manera, por medio del presente, el cliente acepta adquirir de manera adicional a su servicio de internet fijo:\n\n`;
+
+  if (plan["TIPO DE SERVICIO"] && plan["TIPO DE SERVICIO"].toString().trim().toLowerCase() !== "no aplica") {
+    contrato += `Una suscripción al servicio ${plan["TIPO DE SERVICIO"]}, el cual le permitirá acceder a diverso contenido audiovisual a través del aplicativo WIN TV, de acuerdo con las características del plan adquirido, siempre que el cliente mantenga activo su servicio de internet fijo contratado con WIN..\n`;
+  }
+
+  if (plan["WINTVL1"] && plan["WINTVL1"].toString().trim().toLowerCase() !== "no aplica") {
+    contrato += `El precio mensual de la suscripción es de S/ ${plan["WINTVL1"]} incluido IGV.\n`;
+  }
+
+  if (plan["PROMO APP"] && plan["PROMO APP"].toString().trim().toLowerCase() !== "no aplica") {
+    contrato += `Por promoción, tendrá un precio de S/ ${plan["PROMO APP"]} incluido IGV, por los un (01) mes; a partir del segunda mes, pagarás el precio regular.\n`;
+  }
+  
   contrato += `Para mayor información de términos y condiciones ingresa a win.pe/\n`;
   contrato += `¿Aceptas los términos del presente acuerdo? (CLIENTE RESPONDE)\n\n`;
 }
@@ -337,10 +370,6 @@ contrato += `BIENVENIDO A LA FAMILIA WIN. \n`;
 
 </body>
 </html>
-
-
-
-
 
 
 
