@@ -115,7 +115,7 @@ function generarContrato() {
   const anio = hoy.getFullYear();
 	
   // Variables que podrías necesitar
-  const velocidadDupMax = plan["Velocidad Máxima"] && plan["Velocidad Máxima"].toString().toLowerCase() !== "no aplica" ? plan["Velocidad Máxima"] : "la misma velocidad";
+  const velocidadDupMax = plan["Velocidad Máxima"] && plan["Velocidad Máxima"].toString().toLowerCase() !== "no aplica" ? plan["Velocidad Máxima"] : "";
   const tipoContrato = (plan["Tipo De Contrato"] || "").toUpperCase().trim(); // 👈 cambia "Columna O" por el nombre exacto de esa columna en tu Excel
 
   let introTexto = "";
@@ -374,6 +374,7 @@ contrato += `BIENVENIDO A LA FAMILIA WIN. \n`;
 
 </body>
 </html>
+
 
 
 
