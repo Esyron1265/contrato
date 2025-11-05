@@ -265,7 +265,7 @@ if (
   }
 
   if (plan["PLUS"] && plan["PLUS"].toString().trim().toLowerCase() !== "no aplica") {
-    contrato += `El precio mensual de la suscripción es de S/ ${plan["WINTVPLUS"]} incluido IGV.\n`;
+    contrato += `El precio mensual de la suscripción es de S/ ${plan["PLUS"]} incluido IGV.\n`;
   }
 
   if (plan["DGO"] && plan["DGO"].toString().trim().toLowerCase() !== "no aplica") {
@@ -289,18 +289,18 @@ if (
   contrato += `De esta manera, por medio del presente, el cliente acepta adquirir de manera adicional a su servicio de internet fijo:\n\n`;
 
   if (plan["TIPO DE SERVICIO"] && plan["TIPO DE SERVICIO"].toString().trim().toLowerCase() !== "no aplica") {
-    contrato += `Una suscripción al servicio ${plan["TIPO DE SERVICIO"]}, el cual le permitirá acceder a diverso contenido audiovisual a través del aplicativo WIN TV, de acuerdo con las características del plan adquirido, siempre que el cliente mantenga activo su servicio de internet fijo contratado con WIN..\n`;
+    contrato += `Una suscripción al servicio ${plan["TIPO DE SERVICIO"]}, el cual le permitirá acceder a diverso contenido audiovisual a través del aplicativo WIN TV, de acuerdo con las características del plan adquirido, siempre que el cliente mantenga activo su servicio de internet fijo contratado con WIN.\n\n`;
   }
 
   if (plan["WINTVL1"] && plan["WINTVL1"].toString().trim().toLowerCase() !== "no aplica") {
-    contrato += `El precio mensual de la suscripción es de S/ ${plan["WINTVL1"]} incluido IGV.\n`;
+    contrato += `El precio mensual de la suscripción es de S/ ${plan["WINTVL1"]} incluido IGV.\n\n`;
   }
 
   if (plan["PROMO APP"] && plan["PROMO APP"].toString().trim().toLowerCase() !== "no aplica") {
     contrato += `Por promoción, tendrá un precio de S/ ${plan["PROMO APP"]} incluido IGV, por los un (01) mes; a partir del segunda mes, pagarás el precio regular.\n`;
   }
   
-  contrato += `Para mayor información de términos y condiciones ingresa a win.pe/\n`;
+  contrato += `Para mayor información de términos y condiciones ingresa a win.pe/wintv\n`;
   contrato += `¿Aceptas los términos del presente acuerdo? (CLIENTE RESPONDE)\n\n`;
   }
 
@@ -374,6 +374,7 @@ contrato += `BIENVENIDO A LA FAMILIA WIN. \n`;
 
 </body>
 </html>
+
 
 
 
