@@ -152,7 +152,11 @@ switch (tipoContrato) {
   case "INTERNET+PROMOCION+WINTV":
     introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, por un precio promocional de S/ ${precioPromoTotal2.toFixed(2)} durante (1) mes, con el servicio de WINTV. Luego de este periodo, pagarás S/ ${tarifaFinalTotal.toFixed(2)}. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a WINTV. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
     break;
-
+		
+  case "INTERNET2+PROMOCION+WINTV":
+    introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, por un precio promocional de S/ ${precioPromoTotal.toFixed(2)} durante (1) mes, con el servicio de WINTV. Luego de este periodo, pagarás S/ ${tarifaFinalTotal.toFixed(2)}. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a WINTV. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
+    break;
+		
   case "INTERNET+PROMOCION+WINTV+EQUIPOS":
     introTexto = `(Nombre del cliente), queremos asegurarnos de que tengas toda la información clara desde el inicio. Antes de la lectura del contrato, voy a confirmarte el plan contratado: Es un plan de ${plan["Velocidad Máxima Contratada (Carga y Descarga)"]}, por un precio promocional de S/ ${precioPromoTotal2.toFixed(2)} durante (1) mes, con el servicio de WINTV y el/los equipo(s) (Mesh/WINBOX). Luego de este periodo, pagarás S/ ${tarifaFinalTotal.toFixed(2)}. También comentarte que el servicio de televisión digital que brinda WIN incluye únicamente acceso a WINTV. ¿Es correcto?\nAhora procederé con la lectura de contrato.\n\n`;
     break;
@@ -378,6 +382,7 @@ contrato += `BIENVENIDO A LA FAMILIA WIN. \n`;
 
 </body>
 </html>
+
 
 
 
